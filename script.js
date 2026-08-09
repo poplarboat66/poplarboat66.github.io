@@ -43,6 +43,17 @@ const projects = [
   },
        {
     type: "image",
+    media: "assets/CreativeClimate.jpg",
+    alt: "Creative Climate website",
+    year: "2025",
+    title: "Creative Climate",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+  
+  {
+    type: "image",
     media: "assets/05 DESIGNFORLIFE.jpg",
     alt: "Design For Life book cover",
     year: "2019",
