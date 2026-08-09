@@ -290,13 +290,22 @@ function resetAutoAdvance() {
 function goToProject(targetIndex) {
   if (projects.length < 2) return;
 
-  currentProject = (targetIndex + projects.length) % projects.length;
-  const project = projects[currentProject];
+  const nextIndex =
+    (targetIndex + projects.length) % projects.length;
 
-  updateFrameOrientation(project);
-  setMediaContent(project);
-  updateMeta(project);
-  resetAutoAdvance();
+  imageFrame.classList.add("is-fading");
+
+  setTimeout(() => {
+    currentProject = nextIndex;
+    const project = projects[currentProject];
+
+    updateFrameOrientation(project);
+    setMediaContent(project);
+    updateMeta(project);
+
+    imageFrame.classList.remove("is-fading");
+    resetAutoAdvance();
+  }, 250);
 }
 
 function nextProject() {
