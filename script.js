@@ -27,7 +27,7 @@ const projects = [
     alt: "Darebin Arts Speakeasy posters",
     year: "2023",
     title: "Darebin Arts Speakeasy",
-    orientation: "portrait",
+    orientation: "landscape",
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
   },
@@ -73,16 +73,7 @@ const projects = [
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
   },
-             {
-    type: "image",
-    media: "assets/08 OS.jpg",
-    alt: "OrganicSpa packaging",
-    year: "2025",
-    title: "OrganicSpa",
-    orientation: "portrait",
-    studio: "Studio: Hours After",
-    imagePosition: "50% 50%"
-  },
+
               {
     type: "image",
     media: "assets/09 ROCKPOOL.jpg",
@@ -109,7 +100,7 @@ const projects = [
     alt: "The Ecologies project pattern",
     year: "2024",
     title: "The Ecologies Project",
-    orientation: "portrait",
+    orientation: "landscape",
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
   },
