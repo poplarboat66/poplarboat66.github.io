@@ -92,6 +92,13 @@ button {
   background: #f2f2f2;
 }
 
+.image-frame--portrait {
+  aspect-ratio: 2 / 3;
+  width: auto;
+  height: min(calc(100svh - 260px), 70vw);
+  max-width: 100%;
+}
+
 .slide-image {
   position: absolute;
   inset: 0;
@@ -333,6 +340,13 @@ a:focus-visible {
     width: 100%;
     max-height: none;
     aspect-ratio: 3 / 2;
+  }
+
+  .image-frame--portrait {
+    width: auto;
+    height: min(52svh, 620px);
+    max-width: 100%;
+    aspect-ratio: 2 / 3;
   }
 
   .slide-image {

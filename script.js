@@ -6,6 +6,7 @@ const projects = [
     alt: "The Ecologies Project installation at MPRG",
     year: "2025",
     title: "The Ecologies Project",
+    orientation: "landscape",
     studio: "Studio: Hours After",
     imagePosition: "50% 57%"
   },
@@ -14,6 +15,7 @@ const projects = [
     alt: "Back to Back Theatre annual report spread",
     year: "2025",
     title: "Back to Back Theatre Annual Report",
+    orientation: "landscape",
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
   }
@@ -48,6 +50,10 @@ function updateMeta(project) {
   year.textContent = project.year;
   title.textContent = project.title;
   studio.textContent = project.studio;
+}
+
+function updateFrameOrientation(project) {
+  imageFrame.classList.toggle("image-frame--portrait", project.orientation === "portrait");
 }
 
 function resetAutoAdvance() {
@@ -90,6 +96,7 @@ function goToProject(targetIndex, direction = "next", resetTimer = true) {
     currentProject = newIndex;
     setImageContent(image, incomingProject);
     updateMeta(incomingProject);
+    updateFrameOrientation(incomingProject);
 
     // Reset both image layers without animating the reset.
     image.style.transition = "none";
@@ -233,4 +240,5 @@ document.querySelectorAll("a").forEach((link) => {
 // Initial state.
 setImageContent(image, projects[0]);
 updateMeta(projects[0]);
+updateFrameOrientation(projects[0]);
 resetAutoAdvance();
