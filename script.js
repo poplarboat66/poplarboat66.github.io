@@ -9,7 +9,6 @@ const projects = [
     title: "The Ecologies Project",
     orientation: "landscape",
     studio: "Studio: Hours After",
-    people: "Creative Directors: Jane Roberts & Beth Fernon. Designer: Celeste Njoo",
     imagePosition: "50% 57%"
   },
   {
@@ -20,8 +19,7 @@ const projects = [
     title: "Back to Back Theatre Annual Report",
     orientation: "landscape",
     studio: "Studio: Hours After",
-    people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts & Celeste Njoo",
-
+    people: "Designers: Jane Roberts & Celeste Njoo",
     imagePosition: "50% 50%"
   },
    {
@@ -32,7 +30,7 @@ const projects = [
     title: "Darebin Arts Speakeasy",
     orientation: "landscape",
     studio: "Studio: Hours After",
-         people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Celeste Njoo & Matt Jones",
+    people: "Designers: Celeste Njoo & Matt Jones",
     imagePosition: "50% 50%"
      
   },
@@ -44,7 +42,6 @@ const projects = [
     title: "Life Unhurried",
     orientation: "landscape",
     studio: "Studio: Muse Muse",
-       people: "Creative Director: Lila Theodoros. Designer: Celeste Njoo",
     imagePosition: "50% 50%"
   },
        {
@@ -55,7 +52,7 @@ const projects = [
     title: "Creative Climate",
     orientation: "landscape",
     studio: "Studio: Hours After",
-         people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts, Celeste Njoo & Matt Jones",
+    people: "Designers: Jane Roberts, Celeste Njoo & Matt Jones",
     imagePosition: "50% 50%"
   },
   
@@ -78,7 +75,7 @@ const projects = [
     title: "Mornington Peninsula Regional Gallery",
     orientation: "landscape",
     studio: "Studio: Hours After",
-    people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts, Jez Claridge & Celeste Njoo",
+    people: "Designers: Jane Roberts, Jez Claridge & Celeste Njoo",
     imagePosition: "50% 50%"
   },
 
@@ -90,7 +87,6 @@ const projects = [
     title: "Australian Performing Arts Market (APAM)",
     orientation: "landscape",
     studio: "Studio: Hours After",
-    people: "Creative Directors: Jane Roberts & Beth Fernon. Designer: Celeste Njoo",
     imagePosition: "50% 50%"
   },
 
@@ -102,7 +98,6 @@ const projects = [
     title: "Rockpool Farm Byron Bay",
     orientation: "landscape",
     studio: "Studio: Muse Muse",
-  people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theodoros",
     imagePosition: "50% 50%"
   },
                {
@@ -113,8 +108,6 @@ const projects = [
     title: "Rockpool Farm Byron Bay",
     orientation: "landscape",
     studio: "Studio: Muse Muse",
-   people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theodoros",
-
     imagePosition: "50% 50%"
   },
                  {
@@ -125,24 +118,8 @@ const projects = [
     title: "The Ecologies Project",
     orientation: "landscape",
     studio: "Studio: Hours After",
-   people: "Creative Directors: Jane Roberts & Beth Fernon. Designer: Celeste Njoo",
-
     imagePosition: "50% 50%"
   },
-
-                 {
-    type: "image",
-    media: "assets/12 Outsiders.jpg",
-    alt: "Outsiders Packaging",
-    year: "2024",
-    title: "Outsiders",
-    orientation: "landscape",
-    studio: "Studio: Muse Muse",
-people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theodoros",
-
-    imagePosition: "50% 50%"
-  },
-
   
                  {
     type: "image",
@@ -152,7 +129,7 @@ people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theod
     title: "Front Beach Back Beach",
     orientation: "landscape",
     studio: "Studio: Hours After",
-        people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Beth Fernon, Jane Roberts, Jez Claridge & Celeste Njoo",
+    people: "Designers: Beth Fernon, Jane Roberts, Jez Claridge & Celeste Njoo",
     imagePosition: "50% 50%"
   },
                 {
@@ -163,7 +140,7 @@ people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theod
     title: "Flying Fruit Fly Circus / Circus Centre Melbourne",
     orientation: "landscape",
     studio: "Studio: Hours After",
-        people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts, Nikki Farmer & Celeste Njoo",
+    people: "Designers: Jane Roberts, Nikki Farmer & Celeste Njoo",
     imagePosition: "50% 50%"
   },
 
@@ -186,8 +163,7 @@ people: "Creative Director: Lila Theodoros. Designers: Celeste Njoo & Lila Theod
     title: "Mornington Peninsula Regional Gallery",
     orientation: "landscape",
     studio: "Studio: Hours After",
-  people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Beth Fernon, Jane Roberts, Jez Claridge & Celeste Njoo",
-
+  people: "Designers: Beth Fernon, Jane Roberts, Jez Claridge & Celeste Njoo",
     imagePosition: "50% 50%"
   },
 
