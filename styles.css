@@ -218,7 +218,6 @@ button {
   opacity: 0.55;
 }
 
-.slider-controls button:focus-visible,
 a:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 4px;
@@ -447,4 +446,24 @@ a:focus-visible {
 
 .image-frame.is-fading {
   opacity: 0;
+}
+
+
+/* Remove browser focus boxes from portfolio navigation */
+.image-hit-zone,
+.image-hit-zone:hover,
+.image-hit-zone:focus,
+.image-hit-zone:focus-visible,
+.image-hit-zone:active,
+.slider-controls button,
+.slider-controls button:hover,
+.slider-controls button:focus,
+.slider-controls button:focus-visible,
+.slider-controls button:active {
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
 }
