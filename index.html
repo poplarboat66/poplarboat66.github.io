@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Celeste Njoo — Graphic Designer in Naarm / Melbourne.">
   <title>Celeste Njoo — Graphic Designer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="site-shell">
     <header class="site-header">
@@ -25,13 +27,14 @@
 
     <main class="portfolio" aria-label="Selected work">
       <div class="slider">
-        <div class="image-frame" role="button" tabindex="0" aria-label="Next project">
+        <div class="image-frame" tabindex="0" aria-label="Project image navigation">
           <img
             id="project-image"
             class="slide-image is-current"
             src="assets/ecologies.jpg"
             alt="The Ecologies Project installation at MPRG"
           >
+
           <img
             id="project-image-next"
             class="slide-image is-next"
@@ -39,16 +42,22 @@
             alt=""
             aria-hidden="true"
           >
-          <button class="image-hit-zone image-hit-zone--prev" type="button" aria-label="Previous project"><span class="image-cursor-arrow" aria-hidden="true">
+
+          <button class="image-hit-zone image-hit-zone--prev" type="button" aria-label="Previous project">
+            <span class="image-cursor-arrow" aria-hidden="true">
               <svg viewBox="0 0 30 14">
                 <path d="M29 7H2M7 1L1 7l6 6"/>
               </svg>
-            </span></button>
-          <button class="image-hit-zone image-hit-zone--next" type="button" aria-label="Next project"><span class="image-cursor-arrow" aria-hidden="true">
+            </span>
+          </button>
+
+          <button class="image-hit-zone image-hit-zone--next" type="button" aria-label="Next project">
+            <span class="image-cursor-arrow" aria-hidden="true">
               <svg viewBox="0 0 30 14">
                 <path d="M1 7h27M23 1l6 6-6 6"/>
               </svg>
-            </span></button>
+            </span>
+          </button>
         </div>
       </div>
 
@@ -65,6 +74,7 @@
               <path d="M29 7H2M7 1L1 7l6 6"/>
             </svg>
           </button>
+
           <button id="next-project" type="button" aria-label="Next project">
             <svg viewBox="0 0 30 14" aria-hidden="true">
               <path d="M1 7h27M23 1l6 6-6 6"/>
