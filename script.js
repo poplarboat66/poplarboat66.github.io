@@ -20,7 +20,7 @@ const projects = [
     title: "Back to Back Theatre Annual Report",
     orientation: "landscape",
     studio: "Studio: Hours After",
-        people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts & Celeste Njoo",
+    people: "Creative Directors: Jane Roberts & Beth Fernon. Designers: Jane Roberts & Celeste Njoo",
 
     imagePosition: "50% 50%"
   },
@@ -223,7 +223,7 @@ const imageNextZone = document.querySelector(".image-hit-zone--next");
 const year = document.querySelector("#project-year");
 const title = document.querySelector("#project-title");
 const studio = document.querySelector("#project-studio");
-const people = document.querySelector("project-people");
+const people = document.querySelector("#project-people");
 const previousButton = document.querySelector("#prev-project");
 const nextButton = document.querySelector("#next-project");
 const slider = document.querySelector(".slider");
@@ -263,7 +263,7 @@ function updateMeta(project) {
   year.textContent = project.year;
   title.textContent = project.title;
   studio.textContent = project.studio;
-    role.textContent = project.people || "";
+    people.textContent = project.people || "";
 
 }
 
