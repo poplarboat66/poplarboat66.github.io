@@ -1,6 +1,5 @@
 // Add / edit projects here.
-// imagePosition controls which part of each image stays visible when it is cropped
-// into the fixed image frame. Format: "horizontal vertical", e.g. "50% 58%".
+// imagePosition controls the crop inside the fixed 3:2 frame.
 const projects = [
   {
     image: "assets/ecologies.jpg",
@@ -20,8 +19,6 @@ const projects = [
   }
 ];
 
-let currentProject = 0;
-
 const image = document.querySelector("#project-image");
 const nextImage = document.querySelector("#project-image-next");
 const imageFrame = document.querySelector(".image-frame");
@@ -34,13 +31,17 @@ const previousButton = document.querySelector("#prev-project");
 const nextButton = document.querySelector("#next-project");
 const slider = document.querySelector(".slider");
 
+let currentProject = 0;
 let autoAdvanceTimer = null;
 let isAnimating = false;
 
 function setImageContent(element, project) {
   element.src = project.image;
   element.alt = project.alt;
-  element.style.setProperty("--image-position", project.imagePosition || "50% 50%");
+  element.style.setProperty(
+    "--image-position",
+    project.imagePosition || "50% 50%"
+  );
 }
 
 function updateMeta(project) {
@@ -51,21 +52,14 @@ function updateMeta(project) {
 
 function resetAutoAdvance() {
   clearInterval(autoAdvanceTimer);
+
   autoAdvanceTimer = setInterval(() => {
     goToProject(currentProject + 1, "next", false);
   }, 5000);
 }
 
-function finishInstantly(targetIndex) {
-  currentProject = (targetIndex + projects.length) % projects.length;
-  const project = projects[currentProject];
-
-  setImageContent(image, project);
-  updateMeta(project);
-}
-
 function goToProject(targetIndex, direction = "next", resetTimer = true) {
-  if (isAnimating) return;
+  if (isAnimating || projects.length < 2) return;
 
   const newIndex = (targetIndex + projects.length) % projects.length;
   if (newIndex === currentProject) return;
@@ -73,43 +67,47 @@ function goToProject(targetIndex, direction = "next", resetTimer = true) {
   isAnimating = true;
   const incomingProject = projects[newIndex];
 
-  // Prime the incoming image off-screen.
-  nextImage.className = "slide-image is-next";
+  // Position incoming image just outside the frame.
   nextImage.style.transition = "none";
-  nextImage.style.transform = direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
+  nextImage.style.transform =
+    direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
+
   setImageContent(nextImage, incomingProject);
 
-  // Force layout so the browser registers the starting position.
+  // Force the browser to register the starting position.
   nextImage.getBoundingClientRect();
 
   nextImage.style.transition = "";
   image.style.transition = "";
 
   requestAnimationFrame(() => {
-    image.style.transform = direction === "prev" ? "translateX(100%)" : "translateX(-100%)";
+    image.style.transform =
+      direction === "prev" ? "translateX(100%)" : "translateX(-100%)";
     nextImage.style.transform = "translateX(0)";
   });
 
-  const complete = () => {
-    nextImage.removeEventListener("transitionend", complete);
-
+  function completeTransition() {
     currentProject = newIndex;
     setImageContent(image, incomingProject);
     updateMeta(incomingProject);
 
+    // Reset both image layers without animating the reset.
     image.style.transition = "none";
     image.style.transform = "translateX(0)";
     nextImage.style.transition = "none";
-    nextImage.style.transform = direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
+    nextImage.style.transform =
+      direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
 
-    // Flush, then restore CSS transitions.
     image.getBoundingClientRect();
+
     image.style.transition = "";
     nextImage.style.transition = "";
     isAnimating = false;
-  };
+  }
 
-  nextImage.addEventListener("transitionend", complete, { once: true });
+  nextImage.addEventListener("transitionend", completeTransition, {
+    once: true
+  });
 
   if (resetTimer) resetAutoAdvance();
 }
@@ -122,36 +120,39 @@ function previousProject(resetTimer = true) {
   goToProject(currentProject - 1, "prev", resetTimer);
 }
 
+// Visible navigation arrows.
 nextButton.addEventListener("click", () => nextProject(true));
 previousButton.addEventListener("click", () => previousProject(true));
 
-imagePrevZone.addEventListener("click", (event) => {
-  event.stopPropagation();
-  previousProject(true);
-});
+// Left/right halves of the image.
+imagePrevZone.addEventListener("click", () => previousProject(true));
+imageNextZone.addEventListener("click", () => nextProject(true));
 
-imageNextZone.addEventListener("click", (event) => {
-  event.stopPropagation();
-  nextProject(true);
-});
-
-
+// Matching desktop cursor arrows.
 document.querySelectorAll(".image-hit-zone").forEach((zone) => {
   const cursorArrow = zone.querySelector(".image-cursor-arrow");
 
   zone.addEventListener("pointermove", (event) => {
     if (!cursorArrow || event.pointerType === "touch") return;
+
     const rect = zone.getBoundingClientRect();
     cursorArrow.style.left = `${event.clientX - rect.left}px`;
     cursorArrow.style.top = `${event.clientY - rect.top}px`;
   });
 });
 
+// Keyboard controls.
 imageFrame.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
     event.preventDefault();
     previousProject(true);
-  } else if (event.key === "ArrowRight" || event.key === "Enter" || event.key === " ") {
+  }
+
+  if (
+    event.key === "ArrowRight" ||
+    event.key === "Enter" ||
+    event.key === " "
+  ) {
     event.preventDefault();
     nextProject(true);
   }
@@ -162,7 +163,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") previousProject(true);
 });
 
-// Basic touch swipe support.
+// Swipe controls.
 let touchStartX = null;
 
 slider.addEventListener(
@@ -178,10 +179,15 @@ slider.addEventListener(
   (event) => {
     if (touchStartX === null) return;
 
-    const distance = event.changedTouches[0].clientX - touchStartX;
+    const distance =
+      event.changedTouches[0].clientX - touchStartX;
 
     if (Math.abs(distance) > 50) {
-      distance < 0 ? nextProject(true) : previousProject(true);
+      if (distance < 0) {
+        nextProject(true);
+      } else {
+        previousProject(true);
+      }
     }
 
     touchStartX = null;
@@ -189,7 +195,7 @@ slider.addEventListener(
   { passive: true }
 );
 
-// Assign a different random hover colour each time a link is entered.
+// Random link hover colours.
 const hoverPalette = [
   "#ff3b30",
   "#ff9500",
@@ -204,9 +210,17 @@ const hoverPalette = [
 
 document.querySelectorAll("a").forEach((link) => {
   link.addEventListener("mouseenter", () => {
-    const current = link.dataset.lastHoverColour;
-    const choices = hoverPalette.filter((colour) => colour !== current);
-    const colour = choices[Math.floor(Math.random() * choices.length)];
+    const previousColour = link.dataset.lastHoverColour;
+
+    const availableColours = hoverPalette.filter(
+      (colour) => colour !== previousColour
+    );
+
+    const colour =
+      availableColours[
+        Math.floor(Math.random() * availableColours.length)
+      ];
+
     link.style.color = colour;
     link.dataset.lastHoverColour = colour;
   });
@@ -216,6 +230,7 @@ document.querySelectorAll("a").forEach((link) => {
   });
 });
 
+// Initial state.
 setImageContent(image, projects[0]);
 updateMeta(projects[0]);
 resetAutoAdvance();

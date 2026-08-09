@@ -1,6 +1,4 @@
-/* ------------------------------
-   Base
--------------------------------- */
+/* Base */
 * {
   box-sizing: border-box;
 }
@@ -23,16 +21,14 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.08em;
+  transition: color 120ms linear;
 }
 
 button {
   font: inherit;
 }
 
-/* ------------------------------
-   Desktop layout
-   12-column grid
--------------------------------- */
+/* Desktop */
 .site-shell {
   height: 100svh;
   min-height: 600px;
@@ -75,7 +71,6 @@ button {
   letter-spacing: -0.035em;
 }
 
-/* The portfolio row is pushed to the bottom of the viewport. */
 .portfolio {
   flex: 0 1 auto;
   margin-top: auto;
@@ -88,7 +83,6 @@ button {
   min-width: 0;
 }
 
-/* Fixed presentation area. Each source image fills/crops into this space. */
 .image-frame {
   position: relative;
   width: 100%;
@@ -107,6 +101,7 @@ button {
   object-fit: cover;
   object-position: var(--image-position, 50% 50%);
   will-change: transform;
+  transition: transform 520ms cubic-bezier(.65, 0, .35, 1);
 }
 
 .slide-image.is-current {
@@ -117,6 +112,7 @@ button {
   transform: translateX(100%);
 }
 
+/* Image click areas */
 .image-hit-zone {
   position: absolute;
   top: 0;
@@ -153,7 +149,8 @@ button {
   mix-blend-mode: difference;
 }
 
-.image-cursor-arrow svg {
+.image-cursor-arrow svg,
+.slider-controls svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -175,28 +172,7 @@ button {
   outline-offset: -4px;
 }
 
-@media (min-width: 601px) {
-  .slide-image {
-    transition: transform 520ms cubic-bezier(.65, 0, .35, 1);
-  }
-
-  .image-frame.is-sliding-next .slide-image.is-current {
-    transform: translateX(-100%);
-  }
-
-  .image-frame.is-sliding-next .slide-image.is-next {
-    transform: translateX(0);
-  }
-
-  .image-frame.is-sliding-prev .slide-image.is-current {
-    transform: translateX(100%);
-  }
-
-  .image-frame.is-sliding-prev .slide-image.is-next {
-    transform: translateX(0);
-  }
-}
-
+/* Project details */
 .project-panel {
   grid-column: 10 / 13;
   align-self: end;
@@ -235,17 +211,6 @@ button {
   cursor: pointer;
 }
 
-.slider-controls svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
-}
-
 .slider-controls button:hover {
   opacity: 0.55;
 }
@@ -256,10 +221,8 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
-/* ------------------------------
-   Responsive
--------------------------------- */
-@media (max-width: 900px) {
+/* Tablet */
+@media (max-width: 900px) and (min-width: 601px) {
   .site-shell {
     height: auto;
     min-height: 100svh;
@@ -309,18 +272,7 @@ a:focus-visible {
   }
 }
 
-
-/* ------------------------------
-   Link hover
--------------------------------- */
-a {
-  transition: color 120ms linear;
-}
-
-/* ------------------------------
-   Mobile: match supplied layout
--------------------------------- */
-
+/* Mobile */
 @media (max-width: 600px) {
   html,
   body {
@@ -344,7 +296,6 @@ a {
     display: contents;
   }
 
-  /* Reset tablet grid placement and let the intro use the full viewport width. */
   .intro {
     grid-column: 1 / -1;
     grid-row: 1;
@@ -356,7 +307,6 @@ a {
     letter-spacing: -0.04em;
   }
 
-  /* Centre the whole project block in the available space. */
   .portfolio {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -372,7 +322,6 @@ a {
     row-gap: 14px;
   }
 
-  /* Reset the 6-column tablet rule that was constraining this element. */
   .slider {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -387,7 +336,7 @@ a {
   }
 
   .slide-image {
-    transition: transform 420ms cubic-bezier(.65, 0, .35, 1);
+    transition-duration: 420ms;
   }
 
   .project-panel {
@@ -396,7 +345,6 @@ a {
     margin: 0;
   }
 
-  /* Fixed row means the arrows never shift when project text changes. */
   .slider-controls {
     grid-column: 1 / -1;
     grid-row: 1;
@@ -415,7 +363,6 @@ a {
     padding: 0;
   }
 
-  /* Fixed metadata area also prevents project-to-project movement. */
   .project-meta {
     grid-column: 1 / -1;
     grid-row: 3;
@@ -433,7 +380,6 @@ a {
     text-align: left;
   }
 
-  /* Reset inherited desktop/tablet grid placement so links reach both corners. */
   .contact-links {
     grid-column: 1 / -1;
     grid-row: 3;
@@ -469,4 +415,3 @@ a {
     display: none !important;
   }
 }
-
