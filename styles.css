@@ -21,7 +21,7 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.08em;
-  transition: color 120ms linear;
+
 }
 
 button {
@@ -105,7 +105,6 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  will-change: transform;
 }
 
 .slide-media img,
@@ -119,14 +118,6 @@ button {
 
 .slide-media video {
   background: #000;
-}
-
-.slide-media.is-current {
-  transform: translateX(0);
-}
-
-.slide-media.is-next {
-  transform: translateX(100%);
 }
 
 /* Image click areas */
@@ -161,7 +152,7 @@ button {
   width: 30px;
   height: 18px;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+
   color: white;
   mix-blend-mode: difference;
 }
