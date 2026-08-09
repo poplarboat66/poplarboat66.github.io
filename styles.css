@@ -436,3 +436,15 @@ a:focus-visible {
   -webkit-appearance: none;
   appearance: none;
 }
+
+
+
+
+.image-frame {
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+.image-frame.is-fading {
+  opacity: 0;
+}
