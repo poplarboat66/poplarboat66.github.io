@@ -3,9 +3,9 @@
 const projects = [
   {
     type: "image",
-    media: "assets/ecologies.jpg",
-    alt: "The Ecologies Project installation at MPRG",
-    year: "2025",
+    media: "assets/01 ECOLOGIES 1",
+    alt: "The Ecologies Project posters",
+    year: "2024",
     title: "The Ecologies Project",
     orientation: "landscape",
     studio: "Studio: Hours After",
@@ -13,14 +13,173 @@ const projects = [
   },
   {
     type: "image",
-    media: "assets/b2bar.jpg",
+    media: "assets/02 B2B 3.jpg",
     alt: "Back to Back Theatre annual report spread",
     year: "2025",
     title: "Back to Back Theatre Annual Report",
     orientation: "landscape",
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
-  }
+  },
+   {
+    type: "image",
+    media: "assets/03 DAS 2.jpg",
+    alt: "Darebin Arts Speakeasy posters",
+    year: "2023",
+    title: "Darebin Arts Speakeasy",
+    orientation: "portrait",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+     {
+    type: "image",
+    media: "assets/04 LIFEUNHURRIED.jpg",
+    alt: "Life unhurried book cover",
+    year: "2022",
+    title: "Life Unhurried",
+    orientation: "landscape",
+    studio: "Studio: Muse Muse",
+    imagePosition: "50% 50%"
+  },
+       {
+    type: "image",
+    media: "assets/05 DESIGNFORLIFE.jpg",
+    alt: "Design For Life book cover",
+    year: "2019",
+    title: "Design for Life",
+    orientation: "landscape",
+    studio: "Heide Museum of Modern Art",
+    imagePosition: "50% 50%"
+  },
+
+         {
+    type: "image",
+    media: "assets/06 MPRG 1.jpg",
+    alt: "MPRG brand",
+    year: "2022",
+    title: "Mornington Peninsula Regional Gallery",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+
+           {
+    type: "image",
+    media: "assets/07 APAM.jpg",
+    alt: "APAM posters",
+    year: "2025",
+    title: "Australian Performing Arts Market (APAM)",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+             {
+    type: "image",
+    media: "assets/08 OS.jpg",
+    alt: "OrganicSpa packaging",
+    year: "2025",
+    title: "OrganicSpa",
+    orientation: "portrait",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+              {
+    type: "image",
+    media: "assets/09 ROCKPOOL.jpg",
+    alt: "Rockpool Farm Byron Bay logo",
+    year: "2022",
+    title: "Rockpool Farm Byron Bay",
+    orientation: "landscape",
+    studio: "Studio: Muse Muse",
+    imagePosition: "50% 50%"
+  },
+               {
+    type: "image",
+    media: "assets/10 TFK.jpg",
+    alt: "THe Finders Keepers market stall",
+    year: "2022",
+    title: "Rockpool Farm Byron Bay",
+    orientation: "landscape",
+    studio: "Studio: Muse Muse",
+    imagePosition: "50% 50%"
+  },
+                 {
+    type: "image",
+    media: "assets/11 ECOLOGIES.jpg",
+    alt: "The Ecologies project pattern",
+    year: "2024",
+    title: "The Ecologies Project",
+    orientation: "portrait",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+
+                 {
+    type: "image",
+    media: "assets/12 Outsiders.jpg",
+    alt: "Outsiders Packaging",
+    year: "2024",
+    title: "The Ecologies Project",
+    orientation: "landscape",
+    studio: "Studio: Muse Muse",
+    imagePosition: "50% 50%"
+  },
+
+  
+                 {
+    type: "image",
+    media: "assets/13 FBBB.jpg",
+    alt: "FBBB Posters",
+    year: "2022",
+    title: "Front Beach Back Beach",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+                {
+    type: "image",
+    media: "assets/14 CCM 1.jpg",
+    alt: "FFFC Website",
+    year: "2025",
+    title: "Flying Fruit Fly Circus / Circus Centre Melbourne",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+
+                  {
+    type: "image",
+    media: "assets/15 MIRKA.jpg",
+    alt: "Heide Mirke exhibition window",
+    year: "2019",
+    title: "Mirka Mora: Pas de Deux",
+    orientation: "landscape",
+    studio: "Heide Museum of Modern Art",
+    imagePosition: "50% 50%"
+  },
+
+             {
+    type: "image",
+    media: "assets/16 MPRG.jpg",
+    alt: "MPRG Program",
+    year: "2022",
+    title: "Mornington Peninsula Regional Gallery",
+    orientation: "landscape",
+    studio: "Studio: Hours After",
+    imagePosition: "50% 50%"
+  },
+
+         {
+    type: "image",
+    media: "assets/17 LUKE.jpg",
+    alt: "Luke Aleksandrow record",
+    year: "2024",
+    title: "The Break Collection",
+    orientation: "landscape",
+    studio: "Luke Aleksandrow",
+    imagePosition: "50% 50%"
+  },
+  
 
   // VIDEO EXAMPLE:
   // {
