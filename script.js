@@ -3,7 +3,7 @@
 const projects = [
   {
     type: "image",
-    media: "assets/01 ECOLOGIES 1",
+    media: "assets/01 ECOLOGIES 1.jpg",
     alt: "The Ecologies Project posters",
     year: "2024",
     title: "The Ecologies Project",
