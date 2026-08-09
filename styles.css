@@ -106,7 +106,6 @@ button {
   width: 100%;
   height: 100%;
   will-change: transform;
-  transition: transform 520ms cubic-bezier(.65, 0, .35, 1);
 }
 
 .slide-media img,
@@ -360,9 +359,6 @@ a:focus-visible {
     aspect-ratio: 2 / 3;
   }
 
-  .slide-media {
-    transition-duration: 420ms;
-  }
 
   .project-panel {
     grid-column: 1 / -1;
