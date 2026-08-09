@@ -1,0 +1,472 @@
+/* ------------------------------
+   Base
+-------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.08em;
+}
+
+button {
+  font: inherit;
+}
+
+/* ------------------------------
+   Desktop layout
+   12-column grid
+-------------------------------- */
+.site-shell {
+  height: 100svh;
+  min-height: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.site-header,
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 20px;
+}
+
+.site-header {
+  flex: 0 0 auto;
+  align-items: start;
+}
+
+.intro {
+  grid-column: 1 / span 8;
+  margin: 0;
+  max-width: 900px;
+  font-size: clamp(28px, 2.35vw, 34px);
+  line-height: calc(1.12em + 1.5pt);
+  letter-spacing: -0.035em;
+}
+
+.contact-links {
+  grid-column: 10 / 13;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: clamp(28px, 2.35vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+/* The portfolio row is pushed to the bottom of the viewport. */
+.portfolio {
+  flex: 0 1 auto;
+  margin-top: auto;
+  align-items: end;
+  min-height: 0;
+}
+
+.slider {
+  grid-column: 1 / span 8;
+  min-width: 0;
+}
+
+/* Fixed presentation area. Each source image fills/crops into this space. */
+.image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  max-height: calc(100svh - 260px);
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.slide-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--image-position, 50% 50%);
+  will-change: transform;
+}
+
+.slide-image.is-current {
+  transform: translateX(0);
+}
+
+.slide-image.is-next {
+  transform: translateX(100%);
+}
+
+.image-hit-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  width: 50%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+.image-hit-zone--prev {
+  left: 0;
+  cursor: none;
+}
+
+.image-hit-zone--next {
+  right: 0;
+  cursor: none;
+}
+
+.image-cursor-arrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: none;
+  width: 30px;
+  height: 18px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.image-cursor-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .image-hit-zone:hover .image-cursor-arrow {
+    display: block;
+  }
+}
+
+.image-hit-zone:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: -4px;
+}
+
+@media (min-width: 601px) {
+  .slide-image {
+    transition: transform 520ms cubic-bezier(.65, 0, .35, 1);
+  }
+
+  .image-frame.is-sliding-next .slide-image.is-current {
+    transform: translateX(-100%);
+  }
+
+  .image-frame.is-sliding-next .slide-image.is-next {
+    transform: translateX(0);
+  }
+
+  .image-frame.is-sliding-prev .slide-image.is-current {
+    transform: translateX(100%);
+  }
+
+  .image-frame.is-sliding-prev .slide-image.is-next {
+    transform: translateX(0);
+  }
+}
+
+.project-panel {
+  grid-column: 10 / 13;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+  padding-bottom: 1px;
+  text-align: right;
+}
+
+.project-meta {
+  font-size: 14px;
+  line-height: 1.16;
+}
+
+.project-meta p {
+  margin: 0;
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.slider-controls button {
+  appearance: none;
+  width: 30px;
+  height: 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.slider-controls svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.slider-controls button:hover {
+  opacity: 0.55;
+}
+
+.slider-controls button:focus-visible,
+a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* ------------------------------
+   Responsive
+-------------------------------- */
+@media (max-width: 900px) {
+  .site-shell {
+    height: auto;
+    min-height: 100svh;
+    padding: 16px;
+    overflow: visible;
+  }
+
+  .site-header,
+  .portfolio {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 12px;
+  }
+
+  .intro {
+    grid-column: 1 / 5;
+    font-size: clamp(23px, 4vw, 30px);
+  }
+
+  .contact-links {
+    grid-column: 5 / 7;
+    font-size: clamp(23px, 4vw, 30px);
+  }
+
+  .portfolio {
+    margin-top: 56px;
+  }
+
+  .slider {
+    grid-column: 1 / 7;
+  }
+
+  .image-frame {
+    max-height: none;
+  }
+
+  .project-panel {
+    grid-column: 1 / 7;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .slider-controls {
+    margin-top: 0;
+  }
+}
+
+
+/* ------------------------------
+   Link hover
+-------------------------------- */
+a {
+  transition: color 120ms linear;
+}
+
+/* ------------------------------
+   Mobile: match supplied layout
+-------------------------------- */
+
+@media (max-width: 600px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .site-shell {
+    width: 100%;
+    height: 100svh;
+    min-height: 0;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+  }
+
+  .site-header {
+    display: contents;
+  }
+
+  /* Reset tablet grid placement and let the intro use the full viewport width. */
+  .intro {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    font-size: clamp(19px, 4.95vw, 24px);
+    line-height: calc(1.12em + 1.5pt);
+    letter-spacing: -0.04em;
+  }
+
+  /* Centre the whole project block in the available space. */
+  .portfolio {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 22px auto 90px;
+    align-content: center;
+    row-gap: 14px;
+  }
+
+  /* Reset the 6-column tablet rule that was constraining this element. */
+  .slider {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .image-frame {
+    width: 100%;
+    max-height: none;
+    aspect-ratio: 3 / 2;
+  }
+
+  .slide-image {
+    transition: transform 420ms cubic-bezier(.65, 0, .35, 1);
+  }
+
+  .project-panel {
+    grid-column: 1 / -1;
+    display: contents;
+    margin: 0;
+  }
+
+  /* Fixed row means the arrows never shift when project text changes. */
+  .slider-controls {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slider-controls button {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 16px;
+    padding: 0;
+  }
+
+  /* Fixed metadata area also prevents project-to-project movement. */
+  .project-meta {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    height: 90px;
+    margin: 0;
+    overflow: hidden;
+    text-align: left;
+    font-size: clamp(8px, 2.05vw, 10px);
+    line-height: 1.12;
+  }
+
+  .project-meta p {
+    margin: 0;
+    text-align: left;
+  }
+
+  /* Reset inherited desktop/tablet grid placement so links reach both corners. */
+  .contact-links {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: stretch;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    gap: 0;
+    font-size: clamp(19px, 4.95vw, 24px);
+    line-height: 1;
+  }
+
+  .contact-links a:first-child {
+    margin: 0 auto 0 0;
+    text-align: left;
+  }
+
+  .contact-links a:last-child {
+    margin: 0 0 0 auto;
+    text-align: right;
+  }
+
+  .image-hit-zone--prev,
+  .image-hit-zone--next {
+    cursor: pointer;
+  }
+
+  .image-cursor-arrow {
+    display: none !important;
+  }
+}
+

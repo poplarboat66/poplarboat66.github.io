@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Celeste Njoo — Graphic Designer in Naarm / Melbourne.">
+  <title>Celeste Njoo — Graphic Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <p class="intro">
+        Celeste is a Graphic Designer based in Naarm Melbourne, Australia. Working across branding, editorial and digital projects for the arts, culture and projects for good. Currently at <a href="https://www.hoursafter.com.au/" target="_blank" rel="noreferrer">Hours After</a>.
+      </p>
+
+      <nav class="contact-links" aria-label="Contact">
+        <a href="mailto:hello@example.com">Email</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+      </nav>
+    </header>
+
+    <main class="portfolio" aria-label="Selected work">
+      <div class="slider">
+        <div class="image-frame" role="button" tabindex="0" aria-label="Next project">
+          <img
+            id="project-image"
+            class="slide-image is-current"
+            src="assets/ecologies.jpg"
+            alt="The Ecologies Project installation at MPRG"
+          >
+          <img
+            id="project-image-next"
+            class="slide-image is-next"
+            src="assets/b2bar.jpg"
+            alt=""
+            aria-hidden="true"
+          >
+          <button class="image-hit-zone image-hit-zone--prev" type="button" aria-label="Previous project"><span class="image-cursor-arrow" aria-hidden="true">
+              <svg viewBox="0 0 30 14">
+                <path d="M29 7H2M7 1L1 7l6 6"/>
+              </svg>
+            </span></button>
+          <button class="image-hit-zone image-hit-zone--next" type="button" aria-label="Next project"><span class="image-cursor-arrow" aria-hidden="true">
+              <svg viewBox="0 0 30 14">
+                <path d="M1 7h27M23 1l6 6-6 6"/>
+              </svg>
+            </span></button>
+        </div>
+      </div>
+
+      <aside class="project-panel" aria-live="polite">
+        <div class="project-meta">
+          <p id="project-year">2025</p>
+          <p id="project-title">The Ecologies Project</p>
+          <p id="project-studio">Studio: Hours After</p>
+        </div>
+
+        <div class="slider-controls" aria-label="Project navigation">
+          <button id="prev-project" type="button" aria-label="Previous project">
+            <svg viewBox="0 0 30 14" aria-hidden="true">
+              <path d="M29 7H2M7 1L1 7l6 6"/>
+            </svg>
+          </button>
+          <button id="next-project" type="button" aria-label="Next project">
+            <svg viewBox="0 0 30 14" aria-hidden="true">
+              <path d="M1 7h27M23 1l6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
