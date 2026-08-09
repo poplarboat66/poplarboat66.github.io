@@ -2,7 +2,8 @@
 // imagePosition controls the crop inside the fixed 3:2 frame.
 const projects = [
   {
-    image: "assets/ecologies.jpg",
+    type: "image",
+    media: "assets/ecologies.jpg",
     alt: "The Ecologies Project installation at MPRG",
     year: "2025",
     title: "The Ecologies Project",
@@ -11,7 +12,8 @@ const projects = [
     imagePosition: "50% 57%"
   },
   {
-    image: "assets/b2bar.jpg",
+    type: "image",
+    media: "assets/b2bar.jpg",
     alt: "Back to Back Theatre annual report spread",
     year: "2025",
     title: "Back to Back Theatre Annual Report",
@@ -19,10 +21,22 @@ const projects = [
     studio: "Studio: Hours After",
     imagePosition: "50% 50%"
   }
+
+  // VIDEO EXAMPLE:
+  // {
+  //   type: "video",
+  //   media: "assets/project-video.mp4",
+  //   poster: "assets/project-video-poster.jpg",
+  //   alt: "Short description of the video",
+  //   year: "2026",
+  //   title: "Project Name",
+  //   orientation: "landscape",
+  //   studio: "Studio: Hours After"
+  // }
 ];
 
-const image = document.querySelector("#project-image");
-const nextImage = document.querySelector("#project-image-next");
+const media = document.querySelector("#project-media");
+const nextMedia = document.querySelector("#project-media-next");
 const imageFrame = document.querySelector(".image-frame");
 const imagePrevZone = document.querySelector(".image-hit-zone--prev");
 const imageNextZone = document.querySelector(".image-hit-zone--next");
@@ -37,13 +51,43 @@ let currentProject = 0;
 let autoAdvanceTimer = null;
 let isAnimating = false;
 
-function setImageContent(element, project) {
-  element.src = project.image;
-  element.alt = project.alt;
-  element.style.setProperty(
-    "--image-position",
-    project.imagePosition || "50% 50%"
-  );
+function createMediaElement(project) {
+  if (project.type === "video") {
+    const video = document.createElement("video");
+    video.src = project.media;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = false;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    if (project.poster) {
+      video.poster = project.poster;
+    }
+
+    video.setAttribute("aria-label", project.alt || project.title || "Project video");
+    return video;
+  }
+
+  const img = document.createElement("img");
+  img.src = project.media;
+  img.alt = project.alt || project.title || "Project image";
+  img.style.setProperty("--image-position", project.imagePosition || "50% 50%");
+  return img;
+}
+
+function setMediaContent(container, project) {
+  container.innerHTML = "";
+  const element = createMediaElement(project);
+  container.appendChild(element);
+
+  if (project.type === "image") {
+    container.style.setProperty("--image-position", project.imagePosition || "50% 50%");
+  } else {
+    container.style.removeProperty("--image-position");
+  }
+
+  return element;
 }
 
 function updateMeta(project) {
@@ -57,9 +101,25 @@ function updateFrameOrientation(project) {
 }
 
 function resetAutoAdvance() {
-  clearInterval(autoAdvanceTimer);
+  clearTimeout(autoAdvanceTimer);
 
-  autoAdvanceTimer = setInterval(() => {
+  const project = projects[currentProject];
+
+  if (project.type === "video") {
+    const video = media.querySelector("video");
+
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+
+      video.onended = () => {
+        goToProject(currentProject + 1, "next", false);
+      };
+      return;
+    }
+  }
+
+  autoAdvanceTimer = setTimeout(() => {
     goToProject(currentProject + 1, "next", false);
   }, 5000);
 }
@@ -74,49 +134,53 @@ function goToProject(targetIndex, direction = "next", resetTimer = true) {
   const incomingProject = projects[newIndex];
 
   // Position incoming image just outside the frame.
-  nextImage.style.transition = "none";
-  nextImage.style.transform =
+  nextMedia.style.transition = "none";
+  nextMedia.style.transform =
     direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
 
-  setImageContent(nextImage, incomingProject);
+  setMediaContent(nextMedia, incomingProject);
 
   // Force the browser to register the starting position.
-  nextImage.getBoundingClientRect();
+  nextMedia.getBoundingClientRect();
 
-  nextImage.style.transition = "";
-  image.style.transition = "";
+  nextMedia.style.transition = "";
+  media.style.transition = "";
 
   requestAnimationFrame(() => {
-    image.style.transform =
+    media.style.transform =
       direction === "prev" ? "translateX(100%)" : "translateX(-100%)";
-    nextImage.style.transform = "translateX(0)";
+    nextMedia.style.transform = "translateX(0)";
   });
 
   function completeTransition() {
     currentProject = newIndex;
-    setImageContent(image, incomingProject);
+    setMediaContent(media, incomingProject);
     updateMeta(incomingProject);
     updateFrameOrientation(incomingProject);
 
     // Reset both image layers without animating the reset.
-    image.style.transition = "none";
-    image.style.transform = "translateX(0)";
-    nextImage.style.transition = "none";
-    nextImage.style.transform =
+    media.style.transition = "none";
+    media.style.transform = "translateX(0)";
+    nextMedia.style.transition = "none";
+    nextMedia.style.transform =
       direction === "prev" ? "translateX(-100%)" : "translateX(100%)";
 
-    image.getBoundingClientRect();
+    media.getBoundingClientRect();
 
-    image.style.transition = "";
-    nextImage.style.transition = "";
+    media.style.transition = "";
+    nextMedia.style.transition = "";
     isAnimating = false;
+
+    resetAutoAdvance();
   }
 
-  nextImage.addEventListener("transitionend", completeTransition, {
+  nextMedia.addEventListener("transitionend", completeTransition, {
     once: true
   });
 
-  if (resetTimer) resetAutoAdvance();
+  if (resetTimer) {
+    clearTimeout(autoAdvanceTimer);
+  }
 }
 
 function nextProject(resetTimer = true) {
@@ -238,7 +302,7 @@ document.querySelectorAll("a").forEach((link) => {
 });
 
 // Initial state.
-setImageContent(image, projects[0]);
+setMediaContent(media, projects[0]);
 updateMeta(projects[0]);
 updateFrameOrientation(projects[0]);
 resetAutoAdvance();

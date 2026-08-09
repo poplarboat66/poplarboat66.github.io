@@ -99,23 +99,34 @@ button {
   max-width: 100%;
 }
 
-.slide-image {
+.slide-media {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: var(--image-position, 50% 50%);
   will-change: transform;
   transition: transform 520ms cubic-bezier(.65, 0, .35, 1);
 }
 
-.slide-image.is-current {
+.slide-media img,
+.slide-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--image-position, 50% 50%);
+}
+
+.slide-media video {
+  background: #000;
+}
+
+.slide-media.is-current {
   transform: translateX(0);
 }
 
-.slide-image.is-next {
+.slide-media.is-next {
   transform: translateX(100%);
 }
 
@@ -349,7 +360,7 @@ a:focus-visible {
     aspect-ratio: 2 / 3;
   }
 
-  .slide-image {
+  .slide-media {
     transition-duration: 420ms;
   }
 
