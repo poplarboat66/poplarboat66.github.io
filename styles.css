@@ -175,11 +175,6 @@ button {
   }
 }
 
-.image-hit-zone:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: -4px;
-}
-
 /* Project details */
 .project-panel {
   grid-column: 10 / 13;
